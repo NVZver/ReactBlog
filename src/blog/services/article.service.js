@@ -50,8 +50,15 @@ export class ArticleService {
     addArticle(article) {
         const articles = this.getArticles();
         const articleIds = articles.map(item=>+item.id);
-        const maxId = Math.max(...articleIds);
-        article['id'] = maxId + 1;
+        
+        let newId = 0;
+        
+        if(articleIds.length !== 0){
+            const maxId = Math.max(...articleIds);
+            newId = maxId + 1;
+        }
+        
+        article['id'] = newId;
         articles.push(article);
         this.setArticles(articles);
     }

@@ -1,0 +1,30 @@
+.article-form {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    background-color: #eee;
+    
+    &-header {
+        font-size: 20px;
+        font-weight: 500;
+    }
+
+    &-controls{
+        &__item{
+            width: 100%;
+            margin: 5px 0;
+            border: 1px solid;
+            border-radius: 3px;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+    }
+
+    &__button {
+        margin: 5px;
+
+        &--save {
+            background-color: #0000ff21;
+        }
+    }
+}

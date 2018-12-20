@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {ArticleListItem} from './article-list-item';
+import {ArticleForm} from '../article-form/article-form';
 import {ArticleService} from '../services/article.service.js';
 import './articles-list.scss';
 
@@ -15,8 +16,8 @@ export class ArticlesList extends Component {
         }
         this.getArticles = this.getArticles.bind(this);
         this.handleDelete = this.handleDelete.bind(this);
+        this.addArticle = this.addArticle.bind(this);
         this.deleteArticle = this.deleteArticle.bind(this);
-        this.handleAdd = this.handleAdd.bind(this);
         this.handleSearchChange = this.handleSearchChange.bind(this);
     }
 
@@ -35,11 +36,6 @@ export class ArticlesList extends Component {
     handleDelete(id){
         this.deleteArticle(id);
     }
-    
-    handleAdd(){
-        const url = `${this.props.match.path}/add`;
-        this.props.history.push(url);
-    }
 
     handleSearchChange(e){
         const value = e.target.value;
@@ -56,12 +52,8 @@ export class ArticlesList extends Component {
     }
 
     deleteArticle(id){
-        const newArticles = [...this.state.articles];
-        const articleId = newArticles.findIndex(article=>article.id === id);
-        if(articleId !== -1){
-            newArticles.splice(articleId, 1);
-            this.setState({articles: newArticles});
-        }
+        this.articleService.deleteArticle(id);
+        this.getArticles();
     }
 
     createActicleItemsList(articles){
@@ -74,9 +66,15 @@ export class ArticlesList extends Component {
            handleDelete={this.handleDelete}/>);
     }
 
+    addArticle(article){
+        this.articleService.addArticle(article);
+        this.getArticles();
+    }
+
     render() {
         return (
             <div className="articles">
+
                 <div className="shadowed articles-header">
                     <div className="articles-header__title">Articles</div>
                     <input 
@@ -85,12 +83,15 @@ export class ArticlesList extends Component {
                         placeholder="Search"
                         value={this.state.searach}
                         onChange={this.handleSearchChange}/>
-                    <button onClick={this.handleAdd}>Add</button>
                 </div>
+
                 <div className="articles-list">
                     {this.createActicleItemsList(this.state.displayedArticles)}
                 </div>
-                
+
+                <ArticleForm
+                    header="New article"
+                    onSubmit={this.addArticle}/>
             </div>
         );
     }
