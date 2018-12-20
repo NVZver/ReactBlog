@@ -50,7 +50,9 @@ export class ArticleForm extends Component {
 
     handleCancel(){
         this.reset();
-        this.props.onCancel();
+        if(typeof this.props.onCancel === 'function'){
+            this.props.onCancel();
+        }
     }
 
     reset(){
