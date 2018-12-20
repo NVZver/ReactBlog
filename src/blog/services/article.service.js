@@ -13,11 +13,11 @@ const lorem = `Lorem Ipsum is simply dummy text of
     like Aldus PageMaker including versions of Lorem Ipsum.`
 
 const articles = [
-        {id: 0, title: 'Article0', text: lorem},
-        {id: 1, title: 'Article1', text: lorem},
-        {id: 2, title: 'Article2', text: lorem},
-        {id: 3, title: 'Article3', text: lorem},
-        {id: 4, title: 'Article4', text: lorem}
+        {id: 0, title: 'Article0', text: lorem, created: new Date(), updated: undefined},
+        {id: 1, title: 'Article1', text: lorem, created: new Date(), updated: undefined},
+        {id: 2, title: 'Article2', text: lorem, created: new Date(), updated: undefined},
+        {id: 3, title: 'Article3', text: lorem, created: new Date(), updated: undefined},
+        {id: 4, title: 'Article4', text: lorem, created: new Date(), updated: undefined}
     ];
 
 export class ArticleService {
@@ -59,6 +59,7 @@ export class ArticleService {
         }
         
         article['id'] = newId;
+        article['created'] = new Date();
         articles.push(article);
         this.setArticles(articles);
     }

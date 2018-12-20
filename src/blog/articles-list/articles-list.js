@@ -58,11 +58,15 @@ export class ArticlesList extends Component {
 
     createActicleItemsList(articles){
         articles = articles || [];
-        return articles.map( article => <ArticleListItem 
+        console.log(articles);
+        return articles
+                .sort((a, b)=>new Date(b.created) - new Date(a.created))
+                .map( article => <ArticleListItem 
                     key={article.id}
                      id={article.id}
                   title={article.title}
                    text={article.text}
+                created={article.created}
            handleDelete={this.handleDelete}/>);
     }
 

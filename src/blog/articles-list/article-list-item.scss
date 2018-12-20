@@ -29,4 +29,17 @@
             cursor: pointer;
         }
     }
+
+    &-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+    }
+
+    &-date {
+        &__created {
+            color: #666666;
+            font-size: 14px;
+        }
+    }
 }

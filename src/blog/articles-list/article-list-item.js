@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import { Link } from "react-router-dom";
+import formatDate from '../../tools/date-formater';
 import './article-list-item.scss';
 
 export class ArticleListItem extends Component {
@@ -70,9 +71,12 @@ export class ArticleListItem extends Component {
                     <span>{this.getText()}</span>
                     {this.getShowMoreControl()}
                 </div>
-                <div className="article-actions">
-                    <Link className="article-actions__item" to={`/articles/${this.props.id}/edit`}>Edit</Link>
-                    <button className="article-actions__item" onClick={this.handleButtonClickDelete}>Delete</button>
+                <div className="article-footer">
+                    <div className="article-date__created">Created: {formatDate(this.props.created)}</div>
+                    <div className="article-actions">
+                        <Link className="article-actions__item" to={`/articles/${this.props.id}/edit`}>Edit</Link>
+                        <button className="article-actions__item" onClick={this.handleButtonClickDelete}>Delete</button>
+                    </div>
                 </div>
             </div>
         );
