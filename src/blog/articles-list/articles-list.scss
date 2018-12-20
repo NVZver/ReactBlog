@@ -1,0 +1,9 @@
+.article {
+    width: 70%;
+    &s {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+}
