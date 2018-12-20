@@ -20,4 +20,13 @@
             margin: 0px 10px;
         }
     }
+
+    &-content {
+        &__show-more{
+            color: blue;
+            border-bottom: 1px dotted;
+            margin-left: 5px;
+            cursor: pointer;
+        }
+    }
 }
