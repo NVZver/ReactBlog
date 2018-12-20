@@ -9,12 +9,15 @@ export class ArticlesList extends Component {
     constructor(props){
         super(props);
         this.state = {
-            articles: []
+            articles: [],
+            displayedArticles: [],
+            search: ''
         }
         this.getArticles = this.getArticles.bind(this);
         this.handleDelete = this.handleDelete.bind(this);
         this.deleteArticle = this.deleteArticle.bind(this);
         this.handleAdd = this.handleAdd.bind(this);
+        this.handleSearchChange = this.handleSearchChange.bind(this);
     }
 
     componentDidMount(){
@@ -22,8 +25,10 @@ export class ArticlesList extends Component {
     }
 
     getArticles(){
+        const articles = this.articleService.getArticles();
         this.setState({
-            articles: this.articleService.getArticles()
+            articles: [...articles],
+            displayedArticles: [...articles]
         });
     }
 
@@ -34,6 +39,20 @@ export class ArticlesList extends Component {
     handleAdd(){
         const url = `${this.props.match.path}/add`;
         this.props.history.push(url);
+    }
+
+    handleSearchChange(e){
+        const value = e.target.value;
+        this.setState({ 
+            search: value,
+            displayedArticles:this.searchArticles(value)
+        });
+    }
+
+    searchArticles(search) {
+        const regEx = new RegExp(search, 'gi');
+        return this.state.articles
+                .filter(article=> regEx.test(article.title) || regEx.test(article.text))
     }
 
     deleteArticle(id){
@@ -58,12 +77,18 @@ export class ArticlesList extends Component {
     render() {
         return (
             <div className="articles">
-                <div className="shadowed  articles-header">
+                <div className="shadowed articles-header">
                     <div className="articles-header__title">Articles</div>
+                    <input 
+                        type="text"
+                        className="articles-search"
+                        placeholder="Search"
+                        value={this.state.searach}
+                        onChange={this.handleSearchChange}/>
                     <button onClick={this.handleAdd}>Add</button>
                 </div>
                 <div className="articles-list">
-                    {this.createActicleItemsList(this.state.articles)}
+                    {this.createActicleItemsList(this.state.displayedArticles)}
                 </div>
                 
             </div>
