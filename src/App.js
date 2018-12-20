@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Router, Route, Switch } from "react-router-dom";
+import { Router, Route, Switch, Redirect } from "react-router-dom";
 import createBrowserHistory from "history/createBrowserHistory";
 
 import {ArticlesList} from './blog/articles-list/articles-list';
@@ -19,6 +19,7 @@ class App extends Component {
                 <Route path="/articles/:id/edit" component={ArticleEditor}/>
                 <Route path="/articles/add" component={ArticleEditor}/>
                 <Route path="/articles" component={ArticlesList} />
+                <Redirect from="/" to="/articles"/>
             </Switch>
           </div>
         </Router>
