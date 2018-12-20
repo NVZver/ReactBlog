@@ -17,15 +17,12 @@ export class ArticleListItem extends Component {
 
     render(){
         return (
-            <div className="article">
-                <div className="article-title">
-                    <Link to={`/articles/${this.props.id}/edit`}>
-                        {this.props.title} 
-                    </Link>
-                </div>
+            <div className="shadowed article">
+                <div className="article-title">{this.props.title}</div>
                 <div className="article-content">{this.props.text}</div>
                 <div className="article-actions">
-                    <button onClick={this.handleButtonClickDelete}>Delete</button>
+                    <Link className="article-actions__item" to={`/articles/${this.props.id}/edit`}>Edit</Link>
+                    <button className="article-actions__item" onClick={this.handleButtonClickDelete}>Delete</button>
                 </div>
             </div>
         );

@@ -15,7 +15,6 @@ class App extends Component {
     return (
         <Router history={history}>
           <div className="App">
-            <h1>App Component</h1>
             <Switch>
                 <Route path="/articles/:id/edit" component={ArticleEditor}/>
                 <Route path="/articles/add" component={ArticleEditor}/>

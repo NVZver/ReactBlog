@@ -1,0 +1,28 @@
+.article-editor {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+
+    &-header {
+        font-size: 20px;
+        font-weight: 500;
+    }
+
+    &-form{
+        &__item{
+            width: 100%;
+            margin: 5px 0;
+            border: 1px solid;
+            border-radius: 3px;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+    }
+
+    &__button {
+        margin: 5px;
+
+        &--save {
+        }
+    }
+}

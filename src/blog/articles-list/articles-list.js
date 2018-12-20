@@ -48,7 +48,6 @@ export class ArticlesList extends Component {
     createActicleItemsList(articles){
         articles = articles || [];
         return articles.map( article => <ArticleListItem 
-                    className="article"
                     key={article.id}
                      id={article.id}
                   title={article.title}
@@ -59,8 +58,14 @@ export class ArticlesList extends Component {
     render() {
         return (
             <div className="articles">
-                <button onClick={this.handleAdd}>Add</button>
-                {this.createActicleItemsList(this.state.articles)}
+                <div className="shadowed  articles-header">
+                    <div className="articles-header__title">Articles</div>
+                    <button onClick={this.handleAdd}>Add</button>
+                </div>
+                <div className="articles-list">
+                    {this.createActicleItemsList(this.state.articles)}
+                </div>
+                
             </div>
         );
     }

@@ -18,6 +18,7 @@ export class ArticleEditor extends Component {
         this.initArticle = this.initArticle.bind(this);
         this.submit = this.submit.bind(this);
         this.cancel = this.cancel.bind(this);
+        this.getFromTitle = this.getFromTitle.bind(this);
         this.handleTitleChange = this.handleTitleChange.bind(this);
         this.handleTextareaChange = this.handleTextareaChange.bind(this);
     }
@@ -66,6 +67,14 @@ export class ArticleEditor extends Component {
         this.props.history.goBack();
     }
 
+    getFromTitle(){
+        let title = 'Create Article'
+        if(this.state.id !== undefined){
+            title = 'Update Article'
+        }
+        return title;
+    }
+
     handleTitleChange(e){
         const value = e.target.value;
         this.setState({ title: value });
@@ -78,14 +87,26 @@ export class ArticleEditor extends Component {
 
     render(){
         return (
-            <div className="article-editor">
-                <div className="article-editor">
-                    <input type="text" value={this.state.title} onChange={this.handleTitleChange}/>
-                    <textarea onChange={this.handleTextareaChange} value={this.state.text} />
+            <div className="shadowed article-editor">
+                <div className="article-editor-header">
+                    {this.getFromTitle()}
+                </div>
+                <div className="article-editor-form">
+                    <input 
+                        type="text"
+                        className="article-editor-form__item"
+                        value={this.state.title}
+                        onChange={this.handleTitleChange}/>
+                    <textarea
+                        className="article-editor-form__item"
+                        onChange={this.handleTextareaChange}
+                        value={this.state.text} />
                 </div>
                 <div className="article-editor__actions">
-                    <button onClick={this.submit}>Save</button>
-                    <button onClick={this.cancel}>Cancel</button>
+                    <button 
+                        className="article-editor__button article-editor__button--save"
+                        onClick={this.submit}>Save</button>
+                    <button className="article-editor__button" onClick={this.cancel}>Cancel</button>
                 </div>
             </div>
         );
